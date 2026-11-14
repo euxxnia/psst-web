@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PaSST — Brand Identity</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   /* Built from Figma "졸업전시 / MacBook Pro 14 - 1" (1512 × 6144).
      1 design px = --u, so the whole page keeps the Figma proportions at any window width. */
@@ -165,6 +166,17 @@
   #tool-ribbon .card { height: clamp(320px, calc(450 * var(--u)), 510px); }
   #tool-ribbon canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
   #tool-ribbon canvas.grab { cursor: grabbing; }
+
+  /* tone characters: four phones playing live, each line editable (design 980×473 at x266 y6260) */
+  #appear { padding: calc(12 * var(--u)) 0 calc(52 * var(--u)); }
+  #appear-cards { display: grid; grid-template-columns: repeat(4, calc(207 * var(--u))); column-gap: calc(38 * var(--u)); margin-left: calc(285 * var(--u)); }
+  .ap-card .phone { width: 100%; aspect-ratio: 1179 / 2556; border-radius: calc(24 * var(--u)); overflow: hidden; cursor: pointer; background: #f3f3f3;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 calc(10 * var(--u)) calc(30 * var(--u)) rgba(30,40,60,.10); }
+  .ap-card .phone canvas { display: block; width: 100%; height: 100%; }
+  .ap-text { display: block; box-sizing: border-box; width: 100%; margin-top: calc(18 * var(--u)); padding: 6px 0; border: 0; border-bottom: 1px solid #e4e4e4; border-radius: 0;
+    background: transparent; color: #1d1d1f; font: 400 max(12px, calc(13 * var(--u)))/1.5 var(--pret); resize: none; outline: none; transition: border-color .2s; }
+  .ap-text:hover { border-bottom-color: #c9c9c9; }
+  .ap-text:focus { border-bottom-color: #1d1d1f; }
 
   /* background builder */
   #tool-bg { margin-top: calc(150 * var(--u)); padding-left: calc(180 * var(--u)); padding-right: calc(180 * var(--u)); }
@@ -348,7 +360,12 @@
   </div>
 </section>
 
-<!-- 4c · ribbon variants (design y 5402) -->
+<!-- 4c · tone characters -->
+<section id="appear" aria-label="톤별 등장 모션">
+  <div id="appear-cards"></div>
+</section>
+
+<!-- 4d · ribbon variants (design y 5402) -->
 <section id="variants" aria-label="그라데이션 띠 변형">
   <img class="reveal" src="assets/img/variants-left.png?v=3" alt="" width="461" height="593" style="left:calc(233.28 * var(--u));top:calc(509 * var(--u));width:calc(461.34 * var(--u));height:calc(593.34 * var(--u))">
   <img class="reveal" src="assets/img/variants-right.png?v=3" alt="" width="554" height="534" style="left:calc(729.38 * var(--u));top:calc(509 * var(--u));width:calc(553.74 * var(--u));height:calc(533.94 * var(--u))">
@@ -417,6 +434,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 <script src="js/logo-data.js"></script>
 <script src="js/bg-system-data.js"></script>
 <script src="js/bg-engine.js"></script>
+<script src="js/appear.js"></script>
 <script src="js/tools.js?v=2"></script>
 </body>
 </html>
