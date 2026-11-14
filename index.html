@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaSST — Brand Identity</title>
+<style>
+  /* Built from Figma "졸업전시 / MacBook Pro 14 - 1" (1512 × 6144).
+     1 design px = --u, so the whole page keeps the Figma proportions at any window width. */
+  @font-face { font-family: 'Aspergit'; src: url('assets/fonts/Aspergit Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+  :root {
+    /* 1 design px; capped at 1px so wide windows show the Figma size and browser zoom works */
+    --u: min(calc(100vw / 1512), 1px);
+    --ink-title: #6d6d6d;
+    --type-blue: rgba(174, 199, 232, .85);
+    --body-blue: #8ea4c7;
+    --helv: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --pret: Pretendard, 'Apple SD Gothic Neo', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; }
+  body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; }
+  section { position: relative; width: calc(1512 * var(--u)); margin-left: auto; margin-right: auto; }
+  .abs { position: absolute; }
+  .u { /* helper so the markup can say style="--x:..;--y:..;--w:..;--h:.." in design px */
+    left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u));
+    width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u));
+  }
+  .u > img { width: 100%; height: 100%; }
+  /* a horizontal Figma line turned upright: the image keeps its own 210 × 1 size, the box is 1 × 210 */
+  .u > img.turn { position: absolute; left: 50%; top: 50%; width: calc(210 * var(--u)); height: calc(1 * var(--u)); transform: translate(-50%, -50%) rotate(-90deg); }
+  h2.sec { position: absolute; left: 0; right: 0; margin: 0; text-align: center; font: 500 calc(26 * var(--u))/normal var(--helv); color: var(--ink-title); }
+
+  /* ---------- hero (0 – 698) ---------- */
+  #hero { height: calc(698 * var(--u)); overflow: hidden; }
+  #hero .bg { position: absolute; left: 0; top: calc(.56 * var(--u)); width: calc(1512 * var(--u)); height: calc(697.44 * var(--u)); overflow: hidden; }
+  /* the Figma layer is the Dejavu Blue background turned on its side */
+  #hero .bg img { position: absolute; left: 50%; top: 50%; width: calc(697.44 * var(--u)); height: calc(1512 * var(--u)); object-fit: cover; transform: translate(-50%, -50%) rotate(-90deg); }
+  #hero .fade { position: absolute; left: 0; top: calc(282 * var(--u)); width: 100%; height: calc(418 * var(--u)); background: linear-gradient(rgba(255,255,255,0), #fff); }
+  #hero .tag { position: absolute; left: calc(531 * var(--u)); top: calc(166 * var(--u)); margin: 0; color: #fff; font: 400 calc(34 * var(--u))/normal var(--helv); white-space: nowrap; }
+  #hero .tag span { display: inline-block; transition: filter 1.2s ease; }
+  #hero .tag .sp { width: calc(35 * var(--u) * 1.1); }
+  /* time as blur: the further back the word, the softer it gets */
+  #hero .tag .t3 { filter: blur(calc(2.2 * var(--u))); }
+  #hero .tag .t4 { filter: blur(calc(3.6 * var(--u))); opacity: .9; }
+  #hero .tag:hover span { filter: none; }
+  #hero .logo { position: absolute; left: calc(531 * var(--u)); top: calc(226 * var(--u)); width: calc(449 * var(--u)); height: calc(96 * var(--u)); }
+  #hero .about { position: absolute; left: 0; right: 0; top: calc(490 * var(--u)); margin: 0; text-align: center; color: var(--body-blue); font: 400 calc(20 * var(--u))/1.6 var(--pret); }
+  #hero .about b { font-weight: 700; }
+  #hero .about small { font-size: calc(16 * var(--u)); }
+  /* the word is shown as a peeled sticker; the text stays underneath for reading/search */
+  #hero .about .peel { position: relative; color: transparent; }
+  #hero .about .peel img { position: absolute; left: 50%; top: 50%; width: calc(56 * var(--u)); height: calc(26 * var(--u)); object-fit: cover; transform: translate(-50%, -50%); }
+
+  /* ---------- logo (698 – 1600) ---------- */
+  #logo { height: calc(1985 * var(--u)); }
+  #logo video, #logo .still { position: absolute; object-fit: cover; }
+  /* logo variations row: mark, app icon, horizontal wordmarks */
+  .flip { transform: rotate(180deg); }
+  .appicon { position: absolute; background: #aec7e8; overflow: hidden; }
+  #logo h2 { top: calc(232 * var(--u)); }
+  .guide { position: absolute; inset: 0; }
+  .guide .gl, .guide .gv { position: absolute; display: block; left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); }
+  .guide .gl { width: calc(var(--w) * var(--u)); height: 1px; background: rgba(0,0,0,.16); }
+  .guide .gl.dash { background: repeating-linear-gradient(90deg, rgba(0,0,0,.16) 0 calc(3.98 * var(--u)), transparent 0 calc(7.96 * var(--u))); }
+  .guide .gv { width: 1px; height: calc(var(--h) * var(--u)); background: rgba(0,0,0,.16); }
+
+  /* ---------- typography (1600 – 2150) ---------- */
+  #type { height: calc(576 * var(--u)); }
+  #type h2 { top: calc(31 * var(--u)); }
+  .face { position: absolute; margin: 0; color: var(--type-blue); line-height: 1.3; white-space: nowrap; }
+  .blurrow { position: absolute; display: flex; align-items: center; color: var(--type-blue); white-space: nowrap; }
+  .blurrow span { display: block; line-height: normal; }
+  .blurrow.on span { animation: breathe 3.6s ease-in-out infinite; }
+
+  /* ---------- form (2150 – 3700) ---------- */
+  #form { height: calc(1561 * var(--u)); }
+  #form h2 { top: calc(45 * var(--u)); }
+  #form .flabel { position: absolute; z-index: 2; top: calc(767 * var(--u)); margin: 0; transform: translateX(-50%); font: 700 calc(29 * var(--u))/normal 'Aspergit', var(--helv); white-space: nowrap; }
+  #form .pattern { position: absolute; left: calc(866.41 * var(--u)); top: calc(142 * var(--u)); width: calc(428.82 * var(--u)); height: calc(522.49 * var(--u)); display: flex; align-items: center; justify-content: center; }
+  #form .pattern .clip { width: calc(427 * var(--u)); height: calc(521 * var(--u)); overflow: hidden; position: relative; transform: rotate(.2deg); flex: none; }
+  #form .pattern .clip img { position: absolute; left: calc(-44.19 * var(--u)); top: calc(24.9 * var(--u)); width: calc(516.08 * var(--u)); height: calc(469.52 * var(--u)); }
+  .ribbon { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .ribbon:hover { transform: translateY(calc(-6 * var(--u))) rotate(-1deg); }
+
+  /* ---------- color (3700 – 5000) ---------- */
+  #color { height: calc(1300 * var(--u)); }
+  #color h2 { top: calc(82 * var(--u)); }
+  .col { position: absolute; top: 0; width: calc(378 * var(--u)); height: 100%; }
+  /* tile: white fading into the colour (the Figma layer is a vertical SVG turned −90°) */
+  .col .tile { position: absolute; left: 0; top: calc(171 * var(--u)); width: calc(378 * var(--u)); height: calc(229 * var(--u)); }
+  .col .tile img { position: absolute; left: 50%; top: 50%; width: calc(229 * var(--u)); height: calc(378 * var(--u)); transform: translate(-50%, -50%) rotate(-90deg); }
+  .col .band { position: absolute; left: 0; width: calc(378 * var(--u)); height: calc(31 * var(--u)); }
+  .col .band img { position: absolute; left: 50%; top: 50%; width: calc(31 * var(--u)); height: calc(378 * var(--u)); transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); }
+  .col .name { position: absolute; top: calc(366 * var(--u)); margin: 0; transform: translateX(-50%); font: 700 calc(29 * var(--u))/normal 'Aspergit', var(--helv); white-space: nowrap; }
+  .col .bgimg { position: absolute; left: 0; top: calc(479 * var(--u)); width: calc(377.778 * var(--u)); height: calc(819 * var(--u)); object-fit: cover; }
+  .col .mix { position: absolute; left: 0; top: calc(var(--mix, 479) * var(--u)); width: calc(378 * var(--u)); height: calc(20 * var(--u)); }
+  .col .mix img { position: absolute; left: 50%; top: 50%; width: calc(20 * var(--u)); height: calc(378 * var(--u)); transform: translate(-50%, -50%) rotate(-90deg); }
+
+  /* ---------- mockup (5291 – 6144) ---------- */
+  /* ---------- ribbon variants with the brand gradients (5402 – 6774) ---------- */
+  #variants { height: calc(2170 * var(--u)); overflow: hidden; }
+  #variants img { position: absolute; }
+  #mock { height: calc(1111 * var(--u)); }
+  #mock img { position: absolute; left: 0; top: calc(258 * var(--u)); width: calc(1516 * var(--u)); height: calc(853 * var(--u)); object-fit: cover; }
+
+
+  /* ---------- live tools: white, flat, hairline ---------- */
+  .tool { position: relative; padding: 0 calc(283.5 * var(--u)); margin: calc(10 * var(--u)) auto calc(150 * var(--u)); font: 400 clamp(12px, calc(13 * var(--u)), 14px)/1.5 var(--helv), var(--pret); color: #1d1d1f; }
+  .tool-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: calc(18 * var(--u)); }
+  .kicker { font-weight: 500; font-size: clamp(11px, calc(12 * var(--u)), 13px); letter-spacing: .08em; text-transform: uppercase; color: #1d1d1f; }
+  .tool-head p { margin: 0; color: #9a9a9a; font-family: var(--pret); }
+  .card { position: relative; border: 1px solid #ececec; border-radius: 16px; background: #fff; overflow: hidden; }
+  .tool-grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(240px, calc(300 * var(--u)), 330px); gap: calc(16 * var(--u)); }
+  .panel { border: 1px solid #ececec; border-radius: 16px; padding: clamp(16px, calc(22 * var(--u)), 24px); display: flex; flex-direction: column; gap: clamp(13px, calc(17 * var(--u)), 19px); background: #fff; }
+  .panel-top { display: flex; justify-content: space-between; align-items: center; }
+  .panel-top h3 { margin: 0; font: 500 clamp(15px, calc(19 * var(--u)), 21px)/1.1 var(--helv); letter-spacing: -.01em; }
+  .panel-top img { height: clamp(14px, calc(18 * var(--u)), 20px); width: auto; opacity: .9; }
+  .grp { display: flex; flex-direction: column; gap: 9px; }
+  .grp > .lab, label > .lab { color: #9a9a9a; font-size: .92em; }
+  .sl { display: grid; grid-template-columns: 1fr 52px; align-items: center; gap: 10px; }
+  .sl output { text-align: right; color: #8a8a8a; font-variant-numeric: tabular-nums; font-size: .92em; }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 18px; background: transparent; margin: 0; cursor: pointer; --p: 50%; }
+  input[type=range]::-webkit-slider-runnable-track { height: 2px; border-radius: 2px; background: linear-gradient(90deg, #1d1d1f var(--p), #e6e6e6 var(--p)); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #1d1d1f; margin-top: -6px; border: 0; transition: transform .15s; }
+  input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
+  input[type=range]::-moz-range-track { height: 2px; background: #e6e6e6; }
+  input[type=range]::-moz-range-progress { height: 2px; background: #1d1d1f; }
+  input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: #1d1d1f; }
+  .seg4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .seg4 button, .chip { font: inherit; font-size: .92em; padding: 8px 0; border-radius: 8px; border: 1px solid #e6e6e6; background: #fff; color: #1d1d1f; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .seg4 button:hover, .chip:hover { border-color: #1d1d1f; }
+  .seg4 button.on, .chip.on { background: #1d1d1f; border-color: #1d1d1f; color: #fff; }
+  .chip { padding: 6px 12px; border-radius: 99px; }
+  .dots { display: flex; gap: 10px; }
+  .dots button { width: 24px; height: 24px; border-radius: 50%; border: 0; cursor: pointer; box-shadow: 0 0 0 1px rgba(0,0,0,.06) inset; outline-offset: 3px; }
+  .dots button.on { outline: 1.5px solid #1d1d1f; }
+  .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; }
+  .btn { font: 500 12px/1 var(--helv); letter-spacing: .06em; text-transform: uppercase; height: 40px; border-radius: 8px; cursor: pointer; transition: opacity .15s, background .15s; }
+  .btn.line { background: #fff; color: #1d1d1f; border: 1px solid #1d1d1f; }
+  .btn.line:hover { background: #f5f5f5; }
+  .btn.fill { background: #1d1d1f; color: #fff; border: 1px solid #1d1d1f; }
+  .btn.fill:hover { opacity: .86; }
+  .btn.wide { grid-column: 1 / -1; }
+  .hint { position: absolute; left: 18px; top: 16px; color: #a0a0a0; font-size: .9em; pointer-events: none; font-family: var(--pret); }
+  .readout { position: absolute; left: 18px; bottom: 14px; color: #b0b0b0; font-size: .85em; font-variant-numeric: tabular-nums; pointer-events: none; }
+  .off { opacity: .35; pointer-events: none; }
+  .sub { color: #b4b4b4; font-size: .82em; margin-bottom: -6px; font-family: var(--pret); }
+  .toggle-row { display: flex; justify-content: space-between; align-items: center; }
+
+  /* type tester */
+  #tool-type .type-box { border-top: 1px solid #ececec; border-bottom: 1px solid #ececec; }
+  #tool-type input.type-in { width: 100%; border: 0; outline: 0; background: transparent; padding: 16px 0; font: 400 clamp(14px, calc(17 * var(--u)), 18px) var(--helv), var(--pret); color: #1d1d1f; border-bottom: 1px solid #f2f2f2; }
+  #tool-type input.type-in::placeholder { color: #c2c2c2; }
+  #tool-type .type-out { padding: calc(42 * var(--u)) 0 calc(45 * var(--u)); font-size: calc(78 * var(--u)); line-height: 1.25; color: var(--type-blue); min-height: calc(190 * var(--u)); word-break: keep-all; cursor: crosshair; user-select: none; }
+  #tool-type .type-out span { display: inline-block; white-space: pre; }
+  #tool-type .type-out .en { font-family: var(--helv); }
+  #tool-type .type-out .ko { font-family: var(--pret); }
+  #tool-type .ctrl-row { display: flex; gap: calc(40 * var(--u)); align-items: center; padding-top: 18px; flex-wrap: wrap; }
+  #tool-type .ctrl-row label { display: flex; align-items: center; gap: 12px; min-width: 260px; }
+  #tool-type .ctrl-row .sl { width: 200px; }
+
+  /* ribbon */
+  #tool-ribbon .card { height: clamp(320px, calc(450 * var(--u)), 510px); }
+  #tool-ribbon canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+  #tool-ribbon canvas.grab { cursor: grabbing; }
+
+  /* background builder */
+  #tool-bg { margin-top: calc(150 * var(--u)); padding-left: calc(180 * var(--u)); padding-right: calc(180 * var(--u)); }
+  #tool-bg .card { container-type: size; min-height: clamp(430px, calc(570 * var(--u)), 615px); display: flex; align-items: center; justify-content: center; background: #fff; }
+  #tool-bg canvas.bg-view { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: min(88cqh, calc(80cqw * 2556 / 1179)); width: auto; aspect-ratio: 1179 / 2556; border-radius: clamp(18px, calc(26 * var(--u)), 30px); box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 14px 40px rgba(30,40,60,.10); }
+  #tool-bg .comps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  #tool-bg .comps button { padding: 0; border: 0; background: none; cursor: pointer; display: flex; flex-direction: column; gap: 6px; color: #9a9a9a; font: inherit; font-size: .78em; text-align: left; }
+  #tool-bg .comps canvas { width: 100%; aspect-ratio: 120 / 64; border-radius: 8px; display: block; outline-offset: 2px; }
+  #tool-bg .comps button.on canvas { outline: 1.5px solid #1d1d1f; }
+  #tool-bg .comps button.on span { color: #1d1d1f; }
+  #tool-bg .mixbar { position: relative; height: 20px; display: flex; border-radius: 4px; overflow: visible; user-select: none; touch-action: none; }
+  #tool-bg .mixbar .seg { height: 100%; }
+  #tool-bg .mixbar .seg:first-child { border-radius: 4px 0 0 4px; } #tool-bg .mixbar .seg:nth-child(4) { border-radius: 0 4px 4px 0; }
+  #tool-bg .mixbar i { position: absolute; top: -4px; bottom: -4px; width: 12px; margin-left: -6px; cursor: ew-resize; }
+  #tool-bg .mixbar i::after { content: ''; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: #1d1d1f; opacity: 0; transition: opacity .15s; }
+  #tool-bg .mixbar i:hover::after, #tool-bg .mixbar i:active::after { opacity: 1; }
+  #tool-bg .mixlegend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; color: #8a8a8a; font-size: .85em; font-variant-numeric: tabular-nums; }
+  #tool-bg .mixlegend b { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+  @media (max-width: 560px) { .tool-grid { grid-template-columns: 1fr; } .tool { padding: 0 20px; } }
+
+
+  /* ---------- photos (6144 – ) ---------- */
+  #photos { height: calc(928 * var(--u)); overflow: hidden; }
+  #photos .ph { position: absolute; overflow: hidden; }
+  #photos .ph img { position: absolute; max-width: none; }
+
+  @keyframes breathe { 0%, 100% { filter: blur(var(--b)); } 50% { filter: blur(calc(var(--b) * .25)); } }
+  .reveal { opacity: 0; transform: translateY(calc(18 * var(--u))); transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .blurrow.on span { animation: none; } }
+</style>
+</head>
+<body>
+
+<!-- 0 · hero -->
+<section id="hero" aria-label="PaSST">
+  <div class="bg"><img src="assets/img/bg-dejavu-blue.png" alt=""></div>
+  <div class="fade"></div>
+  <p class="tag"><span>a</span><span class="sp"></span><span>word</span><span class="sp"></span><span>from</span><span class="sp"></span><span class="t3">past</span><span class="sp"></span><span class="t4">self.</span></p>
+  <img class="logo" src="assets/svg/logo-hero-white.svg" alt="PaSST" width="449" height="96">
+  <p class="about">‘저기..’를 뜻하는 의성어 Psst과 과거를 뜻하는 Past가 결합한 <b>PaSST</b><small>[파씃]</small>은,<br>내가 남긴 기록들을 <span class="peel">떼어가<img src="assets/img/sticker-tteoeoga.png" alt="" width="74" height="35"></span> 담아두었다가<br>다시 관련있어지는 순간, 과거의 나처럼 불쑥 등장해 말을 건네주는 플러그인 서비스 브랜드입니다.</p>
+</section>
+
+<!-- 1 · logo (design y 698) -->
+<section id="logo">
+  <h2 class="sec">Logo</h2>
+  <!-- guide lines are drawn 1 px thick at every window size (scaled SVG lines thinner than 1 px fade out) -->
+  <div class="guide reveal">
+    <i class="gl" style="--x:427;--y:387;--w:637"></i>
+    <i class="gl dash" style="--x:428;--y:423;--w:637"></i>
+    <i class="gl dash" style="--x:428;--y:449;--w:637"></i>
+    <i class="gl" style="--x:427;--y:485;--w:637"></i>
+    <i class="gv" style="--x:524;--y:328;--h:210"></i>
+    <i class="gv" style="--x:987;--y:328;--h:210"></i>
+    <div class="abs u" style="--x:524.47;--y:386;--w:462.31;--h:98.04"><img src="assets/svg/logo.svg" alt="PaSST 로고" width="462" height="98"></div>
+  </div>
+  <div class="abs u reveal" style="--x:409;--y:653.73;--w:88.11;--h:87.24"><img class="flip" src="assets/svg/ss-mark.svg" alt="SS 심볼" width="88" height="87"></div>
+  <div class="appicon u reveal" style="--x:706;--y:647;--w:99;--h:99">
+    <div class="abs u" style="--x:-0.5;--y:19.8;--w:100;--h:62.96"><img class="flip" src="assets/svg/ss-app-icon.svg" alt="" width="100" height="63"></div>
+  </div>
+  <div class="abs u reveal" style="--x:998.98;--y:645;--w:165.76;--h:41.1"><img src="assets/svg/wordmark-passt.svg" alt="PaSST 워드마크" width="166" height="41"></div>
+  <div class="abs u reveal" style="--x:999;--y:705;--w:165.76;--h:41.1"><img src="assets/svg/wordmark-passt-2.svg" alt="PaSST 워드마크" width="168" height="43" style="position:absolute;left:-.6%;top:-2.43%;width:101.2%;height:104.86%"></div>
+  <!-- symbol + wordmark lockup -->
+  <div class="abs u reveal" style="--x:621;--y:897.01;--w:56.97;--h:56.4"><img class="flip" src="assets/svg/ss-mark-small.svg" alt="SS 심볼" width="57" height="56"></div>
+  <div class="abs u reveal" style="--x:701.4;--y:901.8;--w:198.91;--h:49.32"><img src="assets/svg/lockup-passt.svg" alt="PaSST 워드마크" width="201" height="52" style="position:absolute;left:-.6%;top:-2.44%;width:101.2%;height:104.88%"></div>
+  <!-- construction: drawing motion + finished grid -->
+  <video class="reveal" src="assets/video/logo-construction.mp4" autoplay muted loop playsinline width="1080" height="1350"
+    style="left:calc(276 * var(--u));top:calc(1123 * var(--u));width:calc(452 * var(--u));height:calc(565 * var(--u))"></video>
+  <img class="still reveal" src="assets/img/logo-construction-still.png" alt="로고 제도 가이드" width="1108" height="1372"
+    style="left:calc(805 * var(--u));top:calc(1130 * var(--u));width:calc(445.78 * var(--u));height:calc(552 * var(--u))">
+</section>
+
+<!-- 2 · typography (design y 1600) -->
+<section id="type">
+  <h2 class="sec">Typography</h2>
+  <p class="face reveal" style="left:calc(362 * var(--u));top:calc(145 * var(--u));font:700 calc(60.84 * var(--u))/1.3 'Aspergit', var(--helv)">Aspergit</p>
+  <p class="face reveal" style="left:calc(823.37 * var(--u));top:calc(143 * var(--u));font:400 calc(58.305 * var(--u))/1.3 var(--helv)">Helvetica Neue</p>
+  <div class="blurrow reveal" data-blur="0,1.46,3.245,4.867,8.112,4.867,3.245,2.109,1.46,.811,.487,0" data-ch="S"
+       style="left:calc(364.53 * var(--u));top:calc(234 * var(--u));gap:calc(6.084 * var(--u));font:700 calc(32.448 * var(--u)) 'Aspergit', var(--helv)"></div>
+  <div class="blurrow reveal" data-blur="0,1.46,3.245,4.867,8.112,4.867,3.245,2.109,1.46,.811,.487,0" data-ch="S"
+       style="left:calc(825.9 * var(--u));top:calc(226 * var(--u));gap:calc(8.873 * var(--u));font:400 calc(32.448 * var(--u)) var(--helv)"></div>
+  <div class="blurrow reveal" data-blur="0,.811,3.245,4.867,8.112,4.867,3.245,2.109,1.46,.811,.487,0" data-ch="가"
+       style="left:calc(824.89 * var(--u));top:calc(270 * var(--u));gap:calc(6.084 * var(--u));font:400 calc(27.256 * var(--u)) var(--helv), var(--pret)"></div>
+</section>
+
+
+<!-- 2b · type tester -->
+<section class="tool" id="tool-type">
+  <div class="tool-head"><span class="kicker">Type Tester</span></div>
+  <div class="type-box">
+    <input class="type-in" type="text" maxlength="48" placeholder="a word from past self." aria-label="테스트할 문장">
+    <div class="type-out" aria-live="polite"></div>
+  </div>
+  <div class="ctrl-row">
+    <label><span class="lab">블러 세기</span><div class="sl" data-s="peak"></div></label>
+    <label><span class="lab">번지는 폭</span><div class="sl" data-s="spread"></div></label>
+    <button class="chip on" data-a="flow">흐름 자동</button>
+  </div>
+</section>
+
+<!-- 3 · form (design y 2150) -->
+<section id="form">
+  <h2 class="sec">Form</h2>
+  <div class="abs u reveal" style="--x:130;--y:228;--w:339;--h:69"><img src="assets/svg/fold-corner-fill.svg" alt="" width="339" height="69"></div>
+  <div class="abs u reveal" style="--x:395;--y:122;--w:360;--h:216"><img src="assets/svg/fold-corner-outline.svg?v=2" alt="" width="360" height="216"></div>
+  <div class="abs u reveal" style="--x:270;--y:403;--w:106.94;--h:120"><img src="assets/svg/s-fold.svg" alt="S 접힘" width="107" height="120"></div>
+  <div class="abs u reveal" style="--x:444.21;--y:403;--w:124.57;--h:119.19"><img src="assets/svg/s-base.svg" alt="S 기본" width="125" height="119"></div>
+  <div class="abs u reveal" style="--x:618.72;--y:409.89;--w:116;--h:110"><img src="assets/svg/s-curved.svg" alt="S 굴곡" width="116" height="110"></div>
+  <div class="pattern reveal"><div class="clip"><img src="assets/svg/s-pattern.svg" alt="S 패턴" width="516" height="470"></div></div>
+  <!-- column labels -->
+  <p class="flabel reveal" style="left:calc(342.5 * var(--u));color:#6987b8">Dejavu</p>
+  <p class="flabel reveal" style="left:calc(599 * var(--u));color:#d3a95b">Warm</p>
+  <p class="flabel reveal" style="left:calc(910 * var(--u));color:#ad6d63">Nudge</p>
+  <p class="flabel reveal" style="left:calc(1187.5 * var(--u));color:#a1ae67">Quirk</p>
+  <!-- ribbon studies: four columns, three each (design coordinates) -->
+  <div class="abs u ribbon reveal" style="--x:247.19;--y:806.88;--w:190.3;--h:117.38"><img src="assets/img/ribbon-01.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:232.61;--y:967.03;--w:194.22;--h:171.38"><img src="assets/img/ribbon-00.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:226;--y:1168.04;--w:233.37;--h:172.16"><img src="assets/img/ribbon-02.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:476.44;--y:782;--w:258.95;--h:166.22"><img src="assets/img/ribbon-11.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:476.44;--y:924.27;--w:265.25;--h:173.41"><img src="assets/img/ribbon-10.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:476.44;--y:1140.45;--w:269.74;--h:194.97"><img src="assets/img/ribbon-09.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:770.68;--y:808.71;--w:267.05;--h:153.64"><img src="assets/img/ribbon-07.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:769.79;--y:1004.46;--w:268.84;--h:151.84"><img src="assets/img/ribbon-08.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:779.42;--y:1181.19;--w:236.48;--h:157.23"><img src="assets/img/ribbon-06.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:1040.07;--y:826.18;--w:280.3;--h:168.8"><img src="assets/img/ribbon-03.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:1040.07;--y:996.56;--w:278.44;--h:187.35"><img src="assets/img/ribbon-04.png" alt=""></div>
+  <div class="abs u ribbon reveal" style="--x:1040.07;--y:1187.87;--w:266.38;--h:172.51"><img src="assets/img/ribbon-05.png" alt=""></div>
+</section>
+
+
+<!-- 3b · ribbon builder -->
+<section class="tool" id="tool-ribbon">
+  <div class="tool-grid">
+    <div class="card"><canvas></canvas><span class="hint">드래그해서 돌려보세요</span><span class="readout"></span></div>
+    <div class="panel">
+      <div class="panel-top"><h3>Ribbon Builder</h3></div>
+      <div class="grp"><span class="lab">Fold</span>
+        <div class="seg4"><button data-stop="0">접힘</button><button data-stop="1">기본</button><button data-stop="2">느슨</button><button data-stop="3">굴곡</button></div>
+        <div class="sl" data-s="fold"></div>
+      </div>
+      <div class="grp"><span class="lab">Color</span>
+        <div class="dots">
+          <button class="on" data-color="blue" style="background:#c9d8f0" title="Dejavu Blue"></button>
+          <button data-color="yellow" style="background:#f8e1b8" title="Warm Yellow"></button>
+          <button data-color="coral" style="background:#f3c7b6" title="Nudge Coral"></button>
+          <button data-color="green" style="background:#e3ebbd" title="Quirk Green"></button>
+        </div>
+      </div>
+      <div class="btns"><button class="btn line" data-a="reset">Reset View</button><button class="btn fill" data-a="png">Save PNG</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · color (design y 3700) -->
+<section id="color">
+  <h2 class="sec">Color</h2>
+  <div id="cols"></div>
+</section>
+
+
+<!-- 4b · background builder -->
+<section class="tool" id="tool-bg">
+  <div class="tool-grid">
+    <div class="card"><canvas class="bg-view"></canvas></div>
+    <div class="panel">
+      <div class="panel-top"><h3>Background Builder</h3></div>
+      <div class="grp"><span class="lab">Composition</span><div class="comps"></div></div>
+      <div class="grp"><span class="lab">Color mix</span><div class="mixbar"></div><div class="mixlegend"></div></div>
+      <div class="grp"><span class="lab">Softness</span><div class="sl" data-s="soft"></div></div>
+      <div class="grp"><span class="lab">Light</span><div class="sl" data-s="air"></div></div>
+      <div class="grp">
+        <div class="toggle-row"><span class="lab">Glass</span><button class="chip" data-a="glass">Off</button></div>
+        <div class="glass-opts grp"><span class="sub">결 개수</span><div class="sl" data-s="ribs"></div><span class="sub">굴절</span><div class="sl" data-s="bend"></div></div>
+      </div>
+      <div class="grp">
+        <div class="toggle-row"><span class="lab">Noise</span><button class="chip" data-a="grain">Off</button></div>
+        <div class="grain-opts grp"><span class="sub">양</span><div class="sl" data-s="grain"></div></div>
+      </div>
+      <div class="btns"><button class="btn line" data-a="random">Randomize</button><button class="btn fill" data-a="reset">Reset</button><button class="btn line wide" data-a="png">Save PNG 1179×2556</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4c · ribbon variants (design y 5402) -->
+<section id="variants" aria-label="그라데이션 띠 변형">
+  <img class="reveal" src="assets/img/variants-left.png?v=3" alt="" width="461" height="593" style="left:calc(233.28 * var(--u));top:calc(509 * var(--u));width:calc(461.34 * var(--u));height:calc(593.34 * var(--u))">
+  <img class="reveal" src="assets/img/variants-right.png?v=3" alt="" width="554" height="534" style="left:calc(729.38 * var(--u));top:calc(509 * var(--u));width:calc(553.74 * var(--u));height:calc(533.94 * var(--u))">
+  <img class="reveal" src="assets/img/variants-top.png" alt="" width="840" height="474" style="left:calc(336 * var(--u));top:calc(228.2 * var(--u));width:calc(840 * var(--u));height:calc(473.6 * var(--u))">
+  <!-- applied: Instagram posts -->
+  <img class="reveal" src="assets/img/post-1.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(218 * var(--u));top:calc(1119 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-2.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(497.64 * var(--u));top:calc(1119 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-3.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(789 * var(--u));top:calc(1119 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-4.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(1068.64 * var(--u));top:calc(1119 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-5.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(223 * var(--u));top:calc(1506 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-6.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(502.64 * var(--u));top:calc(1506 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-7.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(794 * var(--u));top:calc(1506 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+  <img class="reveal" src="assets/img/post-8.jpg" alt="인스타그램 포스트 예시" width="241" height="301" style="left:calc(1073.64 * var(--u));top:calc(1506 * var(--u));width:calc(240.64 * var(--u));height:calc(300.8 * var(--u))">
+</section>
+
+<!-- 5 · mockup (design y 6774) -->
+<section id="mock">
+  <img src="assets/img/business-card-ribbon.png" alt="띠를 두른 명함 목업" class="reveal">
+</section>
+
+
+<!-- 6 · photos (design y 6144): the paper tags, shot for real -->
+<section id="photos">
+  <div class="ph reveal" style="left:0;top:calc(84 * var(--u));width:calc(780 * var(--u));height:calc(347 * var(--u))">
+    <img src="assets/img/photo-tag-fold.jpg" alt="모서리가 접힌 종이 태그" style="left:0;top:-6.93%;width:100%;height:114.15%">
+  </div>
+  <div class="ph reveal" style="left:calc(749 * var(--u));top:calc(431 * var(--u));width:calc(809 * var(--u));height:calc(347 * var(--u))">
+    <img src="assets/img/photo-tag-stack.jpg" alt="겹쳐진 반투명 종이 태그" style="left:-2.35%;top:.04%;width:102.4%;height:100.09%">
+  </div>
+</section>
+
+<script>
+(() => {
+'use strict';
+// colour columns: name, colour, Figma file keys (order and x as in the design)
+const COLS = [
+  { name: 'Dejavu Blue', c: '#6987b8', k: 'dejavu', bg: 'bg-dejavu-blue', x: 0, nameX: 180.5, band: 398, mix: 478 },
+  { name: 'Warm Yellow', c: '#d3a95b', k: 'warm', bg: 'bg-warm-yellow', x: 378, nameX: 567.5, band: 398, mix: 479 },
+  { name: 'Nudge Coral', c: '#ad6d63', k: 'coral', bg: 'bg-nudge-coral', x: 756, nameX: 945, band: 398, mix: 479 },
+  { name: 'Quirk Green', c: '#a1ae67', k: 'green', bg: 'bg-quirk-green', x: 1134, nameX: 1323.5, band: 398, mix: 479 },
+];
+document.getElementById('cols').innerHTML = COLS.map(o => `
+  <div class="col reveal" style="left:calc(${o.x} * var(--u))">
+    <div class="tile"><img src="assets/svg/tile-${o.k}.svg" alt="" width="229" height="378"></div>
+    <div class="band" style="top:calc(${o.band} * var(--u))"><img src="assets/svg/band-${o.k}.svg" alt="" width="31" height="378"></div>
+    <p class="name" style="color:${o.c};left:calc(${o.nameX - o.x} * var(--u))">${o.name}</p>
+    <img class="bgimg" src="assets/img/${o.bg}.png" alt="${o.name} 배경">
+    <div class="mix" style="--mix:${o.mix}"><img src="assets/svg/mix-${o.k}.svg" alt="" width="20" height="378"></div>
+  </div>`).join('');
+
+// blur rows: each glyph carries its own blur, the row breathes when it scrolls into view
+document.querySelectorAll('.blurrow').forEach(row => {
+  row.innerHTML = row.dataset.blur.split(',').map(b => `<span style="--b:calc(${b} * var(--u));filter:blur(calc(${b} * var(--u)))">${row.dataset.ch}</span>`).join('');
+});
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  if (e.target.classList.contains('blurrow')) setTimeout(() => e.target.classList.add('on'), 900);
+  io.unobserve(e.target);
+}), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+<script src="js/ribbon3d.js"></script>
+<script src="js/logo-data.js"></script>
+<script src="js/bg-system-data.js"></script>
+<script src="js/bg-engine.js"></script>
+<script src="js/tools.js?v=2"></script>
+</body>
+</html>
